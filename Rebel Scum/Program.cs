@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Rebel_Scum
+namespace RebelScum
 {
     static class Program
     {

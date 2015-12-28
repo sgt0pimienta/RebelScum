@@ -7,7 +7,7 @@
     <ProjectGuid>{D1B31C8D-9869-4FE1-8546-EB9492B1151D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Rebel_Scum</RootNamespace>
+    <RootNamespace>RebelScum</RootNamespace>
     <AssemblyName>Rebel Scum</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -54,11 +54,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RebelScumGame.cs" />
     <Compile Include="Screens\MissionsScreen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Screens\Screen.cs">
+    <Compile Include="Screens\MissionsScreen.Designer.cs">
+      <DependentUpon>MissionsScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\ScreenBase.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\ScreenBase.Designer.cs">
+      <DependentUpon>ScreenBase.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
@@ -71,7 +78,15 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Screens\MissionsScreen.resx">
+      <DependentUpon>MissionsScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\ScreenBase.resx">
+      <DependentUpon>ScreenBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\DataSources\RebelScumGame.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
