@@ -48,6 +48,7 @@ namespace RebelScum.Screens
         private void createMissionButton_Click(object sender, EventArgs e)
         {
 
+            activeMissionsTable.Rows[0].Cells[0].Value = MissionProvider.createMission("Test", 1, 1).Name;
         }
     }
 }

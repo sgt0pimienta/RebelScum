@@ -13,9 +13,10 @@ namespace RebelScum.Missions
     {
 
         private static XmlSerializer serializer = new XmlSerializer(typeof(List<Mission>));
+        public static int missionNumber = 0;
 
-        public static List<Mission> GetMissions() {
-
+        public static List<Mission> GetMissions()
+        {
             List<Mission> missions;
             var missionFileStream = File.OpenRead("mission2.xml");
             missions = (List<Mission>)serializer.Deserialize(missionFileStream);
@@ -31,10 +32,26 @@ namespace RebelScum.Missions
             }
         }
 
-        public static Mission createMission()
+        public static Mission createMission(string name, int type, int scope)
         {
             Mission newMission = new Mission();
+            newMission.Name = name;
+            newMission.MissionType = (MissionType)type;
+            newMission.MissionScope = (MissionScope)scope;
+            newMission.Id = (missionNumber += 1);
             return newMission;
         }
+
+        //        public static Mission createMission(string name, string type, string scope)
+        //        {
+        //          Mission newMission = new Mission();
+        //          newMission.Name = name;
+        //          newMission.MissionType = (MissionType)type;
+        //          newMission.MissionScope = (MissionScopescope;
+        //          newMission.Id = (missionNumber += 1);
+        //          return newMission;
+        //        }
+
+
     }
 }

@@ -34,14 +34,14 @@
             this.missionTypeLabel = new System.Windows.Forms.Label();
             this.missionListDropdown = new System.Windows.Forms.ComboBox();
             this.missionListLabel = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.activeMissionsTable = new System.Windows.Forms.DataGridView();
             this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.typeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.targetColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.scopeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.activeMissionsLabel = new System.Windows.Forms.Label();
             this.createMissionButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.activeMissionsTable)).BeginInit();
             this.SuspendLayout();
             // 
             // missionScopeDropdown
@@ -109,19 +109,19 @@
             this.missionListLabel.TabIndex = 19;
             this.missionListLabel.Text = "Mission:";
             // 
-            // dataGridView1
+            // activeMissionsTable
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.activeMissionsTable.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.activeMissionsTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.activeMissionsTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nameColumn,
             this.typeColumn,
             this.targetColumn,
             this.scopeColumn});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 294);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(444, 136);
-            this.dataGridView1.TabIndex = 20;
+            this.activeMissionsTable.Location = new System.Drawing.Point(12, 294);
+            this.activeMissionsTable.Name = "activeMissionsTable";
+            this.activeMissionsTable.Size = new System.Drawing.Size(444, 136);
+            this.activeMissionsTable.TabIndex = 20;
             // 
             // nameColumn
             // 
@@ -169,7 +169,7 @@
             this.ClientSize = new System.Drawing.Size(624, 441);
             this.Controls.Add(this.createMissionButton);
             this.Controls.Add(this.activeMissionsLabel);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.activeMissionsTable);
             this.Controls.Add(this.missionListLabel);
             this.Controls.Add(this.missionListDropdown);
             this.Controls.Add(this.missionTypeLabel);
@@ -178,7 +178,7 @@
             this.Controls.Add(this.missionScopeDropdown);
             this.Name = "MissionsScreen";
             this.Text = "MissionScreen";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.activeMissionsTable)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -191,7 +191,7 @@
         private System.Windows.Forms.Label missionTypeLabel;
         private System.Windows.Forms.ComboBox missionListDropdown;
         private System.Windows.Forms.Label missionListLabel;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView activeMissionsTable;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn typeColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn targetColumn;

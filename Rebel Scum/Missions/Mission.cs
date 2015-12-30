@@ -14,7 +14,7 @@ namespace RebelScum.Missions
         public int Id { get; set; }
         public string Name { get; set; }
         public MissionTemplate MissionTemplate { get; set; }
-        public MissionScope Scope { get; set; }
+        public MissionScope MissionScope { get; set; }
         public MissionType MissionType { get; set; }
 
         [XmlIgnore]
