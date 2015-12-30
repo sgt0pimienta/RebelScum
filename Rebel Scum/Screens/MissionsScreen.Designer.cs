@@ -28,58 +28,175 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
+            this.missionScopeDropdown = new System.Windows.Forms.ComboBox();
+            this.missionScopeLabel = new System.Windows.Forms.Label();
+            this.missionTypeDropdown = new System.Windows.Forms.ComboBox();
+            this.missionTypeLabel = new System.Windows.Forms.Label();
+            this.missionListDropdown = new System.Windows.Forms.ComboBox();
+            this.missionListLabel = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.typeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.targetColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.scopeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.activeMissionsLabel = new System.Windows.Forms.Label();
+            this.createMissionButton = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // missionScopeDropdown
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(76, 34);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
+            this.missionScopeDropdown.DropDownWidth = 120;
+            this.missionScopeDropdown.FormattingEnabled = true;
+            this.missionScopeDropdown.Items.AddRange(new object[] {
+            "Galaxy",
+            "System",
+            "Planet"});
+            this.missionScopeDropdown.Location = new System.Drawing.Point(491, 43);
+            this.missionScopeDropdown.Name = "missionScopeDropdown";
+            this.missionScopeDropdown.Size = new System.Drawing.Size(121, 21);
+            this.missionScopeDropdown.TabIndex = 14;
+            this.missionScopeDropdown.SelectedIndexChanged += new System.EventHandler(this.missionScopeDropdown_SelectedIndexChanged);
             // 
-            // button1
+            // missionScopeLabel
             // 
-            this.button1.Location = new System.Drawing.Point(79, 158);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.missionScopeLabel.AutoSize = true;
+            this.missionScopeLabel.Location = new System.Drawing.Point(402, 46);
+            this.missionScopeLabel.Name = "missionScopeLabel";
+            this.missionScopeLabel.Size = new System.Drawing.Size(79, 13);
+            this.missionScopeLabel.TabIndex = 15;
+            this.missionScopeLabel.Text = "Mission Scope:";
             // 
-            // label2
+            // missionTypeDropdown
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(79, 73);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "label2";
+            this.missionTypeDropdown.FormattingEnabled = true;
+            this.missionTypeDropdown.Items.AddRange(new object[] {
+            "Diplomatic",
+            "military",
+            "Intelligence",
+            "Sabotage",
+            "Economic",
+            "Population"});
+            this.missionTypeDropdown.Location = new System.Drawing.Point(491, 70);
+            this.missionTypeDropdown.Name = "missionTypeDropdown";
+            this.missionTypeDropdown.Size = new System.Drawing.Size(120, 21);
+            this.missionTypeDropdown.TabIndex = 16;
+            this.missionTypeDropdown.SelectedIndexChanged += new System.EventHandler(this.missionTypeDropdown_SelectedIndexChanged);
+            // 
+            // missionTypeLabel
+            // 
+            this.missionTypeLabel.AutoSize = true;
+            this.missionTypeLabel.Location = new System.Drawing.Point(409, 73);
+            this.missionTypeLabel.Name = "missionTypeLabel";
+            this.missionTypeLabel.Size = new System.Drawing.Size(72, 13);
+            this.missionTypeLabel.TabIndex = 17;
+            this.missionTypeLabel.Text = "Mission Type:";
+            // 
+            // missionListDropdown
+            // 
+            this.missionListDropdown.FormattingEnabled = true;
+            this.missionListDropdown.Location = new System.Drawing.Point(491, 97);
+            this.missionListDropdown.Name = "missionListDropdown";
+            this.missionListDropdown.Size = new System.Drawing.Size(120, 21);
+            this.missionListDropdown.TabIndex = 18;
+            // 
+            // missionListLabel
+            // 
+            this.missionListLabel.AutoSize = true;
+            this.missionListLabel.Location = new System.Drawing.Point(436, 100);
+            this.missionListLabel.Name = "missionListLabel";
+            this.missionListLabel.Size = new System.Drawing.Size(45, 13);
+            this.missionListLabel.TabIndex = 19;
+            this.missionListLabel.Text = "Mission:";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.nameColumn,
+            this.typeColumn,
+            this.targetColumn,
+            this.scopeColumn});
+            this.dataGridView1.Location = new System.Drawing.Point(12, 294);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(444, 136);
+            this.dataGridView1.TabIndex = 20;
+            // 
+            // nameColumn
+            // 
+            this.nameColumn.HeaderText = "Name";
+            this.nameColumn.Name = "nameColumn";
+            // 
+            // typeColumn
+            // 
+            this.typeColumn.HeaderText = "Type";
+            this.typeColumn.Name = "typeColumn";
+            // 
+            // targetColumn
+            // 
+            this.targetColumn.HeaderText = "Target";
+            this.targetColumn.Name = "targetColumn";
+            // 
+            // scopeColumn
+            // 
+            this.scopeColumn.HeaderText = "Scope";
+            this.scopeColumn.Name = "scopeColumn";
+            // 
+            // activeMissionsLabel
+            // 
+            this.activeMissionsLabel.AutoSize = true;
+            this.activeMissionsLabel.Location = new System.Drawing.Point(12, 270);
+            this.activeMissionsLabel.Name = "activeMissionsLabel";
+            this.activeMissionsLabel.Size = new System.Drawing.Size(83, 13);
+            this.activeMissionsLabel.TabIndex = 21;
+            this.activeMissionsLabel.Text = "Active Missions:";
+            // 
+            // createMissionButton
+            // 
+            this.createMissionButton.Location = new System.Drawing.Point(491, 127);
+            this.createMissionButton.Name = "createMissionButton";
+            this.createMissionButton.Size = new System.Drawing.Size(119, 23);
+            this.createMissionButton.TabIndex = 22;
+            this.createMissionButton.Text = "Create Mission";
+            this.createMissionButton.UseVisualStyleBackColor = true;
+            this.createMissionButton.Click += new System.EventHandler(this.createMissionButton_Click);
             // 
             // MissionsScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(624, 441);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.createMissionButton);
+            this.Controls.Add(this.activeMissionsLabel);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.missionListLabel);
+            this.Controls.Add(this.missionListDropdown);
+            this.Controls.Add(this.missionTypeLabel);
+            this.Controls.Add(this.missionTypeDropdown);
+            this.Controls.Add(this.missionScopeLabel);
+            this.Controls.Add(this.missionScopeDropdown);
             this.Name = "MissionsScreen";
             this.Text = "MissionScreen";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox missionScopeDropdown;
+        private System.Windows.Forms.Label missionScopeLabel;
+        private System.Windows.Forms.ComboBox missionTypeDropdown;
+        private System.Windows.Forms.Label missionTypeLabel;
+        private System.Windows.Forms.ComboBox missionListDropdown;
+        private System.Windows.Forms.Label missionListLabel;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn typeColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn targetColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn scopeColumn;
+        private System.Windows.Forms.Label activeMissionsLabel;
+        private System.Windows.Forms.Button createMissionButton;
     }
 }

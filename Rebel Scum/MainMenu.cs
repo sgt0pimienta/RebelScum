@@ -16,9 +16,7 @@ namespace RebelScum
         public MainMenu()
         {
             InitializeComponent();
-
             RebelScumGame.GameStart = DateTime.Now;
-
         }
 
         private void MissionsButton_Click(object sender, EventArgs e)
@@ -32,11 +30,6 @@ namespace RebelScum
         private void MainMenu_Shown(object sender, EventArgs e)
         {
             
-        }
-
-        private void MainMenu_Activated(object sender, EventArgs e)
-        {
-            label1.Text = RebelScumGame.LastAction.ToString();
         }
     }
 }

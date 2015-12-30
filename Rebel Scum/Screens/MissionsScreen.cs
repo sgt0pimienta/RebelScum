@@ -7,27 +7,47 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using RebelScum.Missions;
+using RebelScum.Classes;
 
 namespace RebelScum.Screens
 {
     public partial class MissionsScreen : ScreenBase
     {
 
+        public static string missionScope;
+        public static string missionType;
+        public static string mission;
+
         public MissionsScreen() : base()
         {
             InitializeComponent();
-            RefreshData();
+
+            var missions = MissionProvider.GetMissions();
+
+            MissionProvider.GetMissions();
+
         }
 
-        protected void RefreshData() {
-            label1.Text = RebelScumGame.GameStart.ToString();
-            label2.Text = RebelScumGame.LastAction.ToString();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+        public void missionListRefresh(List<string> targetList)
         {
-            RebelScumGame.LastAction = DateTime.Now;
-            RefreshData();
+            missionListDropdown.Items.Clear();
+            missionListDropdown.Items.Add(targetList);
+        }
+
+        private void missionScopeDropdown_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            missionListRefresh(null);
+        }
+
+        private void missionTypeDropdown_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            missionListRefresh(null);
+        }
+
+        private void createMissionButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

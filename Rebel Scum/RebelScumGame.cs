@@ -11,6 +11,5 @@ namespace RebelScum
     public static class RebelScumGame
     {
         public static DateTime GameStart { get; set; }
-        public static DateTime LastAction { get; internal set; }
     }
 }
