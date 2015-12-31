@@ -22,33 +22,45 @@ namespace RebelScum.Screens
         public MissionsScreen() : base()
         {
             InitializeComponent();
-
-            var missions = MissionProvider.GetMissions();
-
-            MissionProvider.GetMissions();
-
+            activeMissionsTable.AutoGenerateColumns = false;
+            activeMissionsTable.DataSource = RebelScumGame.activeMissionsBindingList;
         }
 
-        public void missionListRefresh(List<string> targetList)
+        public void activeMissionListRefresh(List<string> targetList)
         {
-            missionListDropdown.Items.Clear();
-            missionListDropdown.Items.Add(targetList);
+            //missionListDropdown.Items.Clear();
+            //missionListDropdown.Items.Add(targetList);
         }
 
         private void missionScopeDropdown_SelectedIndexChanged(object sender, EventArgs e)
         {
-            missionListRefresh(null);
+            //availablemissionListRefresh(null);
         }
 
         private void missionTypeDropdown_SelectedIndexChanged(object sender, EventArgs e)
         {
-            missionListRefresh(null);
+            //availablemissionListRefresh(null);
         }
 
         private void createMissionButton_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(missionTypeDropdown.Text))
+            {
+                var result = MessageBox.Show("You must select a mission type, dingus", "Dingus Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if(result == DialogResult.No)
+                {
+                    MessageBox.Show("Don't alegate");
+                }
+                return;
+            }
+            RebelScumGame.activeMissions.Add(MissionProvider.createMission("Test", missionTypeDropdown.Text, missionScopeDropdown.Text));
+            RebelScumGame.refreshActiveMissionBinding();
+            activeMissionsTable.DataSource = RebelScumGame.activeMissionsBindingList;
+        }
 
-            activeMissionsTable.Rows[0].Cells[0].Value = MissionProvider.createMission("Test", 1, 1).Name;
+        private void MissionsScreen_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            MissionProvider.SaveActiveMissions();
         }
     }
 }

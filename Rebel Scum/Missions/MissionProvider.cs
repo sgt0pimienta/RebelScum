@@ -12,46 +12,41 @@ namespace RebelScum.Missions
     public static class MissionProvider
     {
 
-        private static XmlSerializer serializer = new XmlSerializer(typeof(List<Mission>));
-        public static int missionNumber = 0;
+        private static XmlSerializer activeMissionSerializer = new XmlSerializer(typeof(List<Mission>));
+        private static XmlSerializer missionTemplateSerializer = new XmlSerializer(typeof(List<MissionTemplate>));
 
-        public static List<Mission> GetMissions()
+        public static List<Mission> GetActiveMissions()
         {
-            List<Mission> missions;
-            var missionFileStream = File.OpenRead("mission2.xml");
-            missions = (List<Mission>)serializer.Deserialize(missionFileStream);
-            missionFileStream.Dispose();
-            return missions;
-        }
-
-        public static void SaveMissions(List<Mission> missions)
-        {
-            using (var missionFileStream = File.OpenWrite("mission.xml"))
+            using (var missionFileStream = File.OpenRead("mission.xml"))
             {
-                serializer.Serialize(missionFileStream, missions);
+                return (List<Mission>)activeMissionSerializer.Deserialize(missionFileStream);
             }
         }
 
-        public static Mission createMission(string name, int type, int scope)
+        public static void SaveActiveMissions()
+        {
+            using (var missionFileStream = File.OpenWrite("mission.xml"))
+            {
+                activeMissionSerializer.Serialize(missionFileStream, RebelScumGame.activeMissions);
+            }
+        }
+
+        public static Mission createMission(string name, string type, string scope)
         {
             Mission newMission = new Mission();
             newMission.Name = name;
-            newMission.MissionType = (MissionType)type;
-            newMission.MissionScope = (MissionScope)scope;
-            newMission.Id = (missionNumber += 1);
+            newMission.MissionType = type;
+            newMission.MissionScope = scope;
+            newMission.Id = (RebelScumGame.activeMissionCount + 1);
             return newMission;
         }
 
-        //        public static Mission createMission(string name, string type, string scope)
-        //        {
-        //          Mission newMission = new Mission();
-        //          newMission.Name = name;
-        //          newMission.MissionType = (MissionType)type;
-        //          newMission.MissionScope = (MissionScopescope;
-        //          newMission.Id = (missionNumber += 1);
-        //          return newMission;
-        //        }
-
-
+        public static List<MissionTemplate> readAllMissionsList()
+        {
+            using (FileStream allMissionsFileStream = File.OpenRead("missionList.xml"))
+            {
+                return (List<MissionTemplate>)missionTemplateSerializer.Deserialize(allMissionsFileStream);
+            }
+        }
     }
 }

@@ -14,8 +14,8 @@ namespace RebelScum.Missions
         public int Id { get; set; }
         public string Name { get; set; }
         public MissionTemplate MissionTemplate { get; set; }
-        public MissionScope MissionScope { get; set; }
-        public MissionType MissionType { get; set; }
+        public string MissionScope { get; set; }
+        public string MissionType { get; set; }
 
         [XmlIgnore]
         public Planet TargetPlanet { get; set; }

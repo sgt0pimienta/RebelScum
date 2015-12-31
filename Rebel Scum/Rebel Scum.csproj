@@ -56,7 +56,6 @@
     </Compile>
     <Compile Include="Missions\MissionProvider.cs" />
     <Compile Include="Missions\Mission.cs" />
-    <Compile Include="Missions\MissionEnums.cs" />
     <Compile Include="Missions\MissionTemplate.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
