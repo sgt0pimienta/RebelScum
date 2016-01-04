@@ -17,8 +17,7 @@ namespace RebelScum
     {
         public static DateTime GameStart { get; set; }
         public static List<MissionTemplate> allMissionTemplates { get; set; }
-        public static List<Mission> activeMissions { get; set; }
-        public static BindingList<Mission> activeMissionsBindingList { get; set;}
+        public static List<Mission> activeMissions { get; set;}
         public static int activeMissionCount { get; set; }
 
         
@@ -26,12 +25,6 @@ namespace RebelScum
         {
             activeMissions = MissionProvider.GetActiveMissions();
             activeMissionCount = activeMissions.Count;
-            refreshActiveMissionBinding();
         }
-        
-        public static void refreshActiveMissionBinding()
-        {
-            activeMissionsBindingList = new BindingList<Mission>(activeMissions);
-        }        
     }
 }

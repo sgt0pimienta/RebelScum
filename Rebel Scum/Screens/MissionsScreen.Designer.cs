@@ -41,6 +41,7 @@
             this.scopeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.activeMissionsLabel = new System.Windows.Forms.Label();
             this.createMissionButton = new System.Windows.Forms.Button();
+            this.btnDeleteMission = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.activeMissionsTable)).BeginInit();
             this.SuspendLayout();
             // 
@@ -132,6 +133,7 @@
             this.scopeColumn});
             this.activeMissionsTable.Location = new System.Drawing.Point(12, 294);
             this.activeMissionsTable.Name = "activeMissionsTable";
+            this.activeMissionsTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.activeMissionsTable.Size = new System.Drawing.Size(569, 135);
             this.activeMissionsTable.TabIndex = 20;
             // 
@@ -179,11 +181,22 @@
             this.createMissionButton.UseVisualStyleBackColor = true;
             this.createMissionButton.Click += new System.EventHandler(this.createMissionButton_Click);
             // 
+            // btnDeleteMission
+            // 
+            this.btnDeleteMission.Location = new System.Drawing.Point(92, 143);
+            this.btnDeleteMission.Name = "btnDeleteMission";
+            this.btnDeleteMission.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteMission.TabIndex = 23;
+            this.btnDeleteMission.Text = "delete mis";
+            this.btnDeleteMission.UseVisualStyleBackColor = true;
+            this.btnDeleteMission.Click += new System.EventHandler(this.btnDeleteMission_Click);
+            // 
             // MissionsScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(593, 440);
+            this.Controls.Add(this.btnDeleteMission);
             this.Controls.Add(this.createMissionButton);
             this.Controls.Add(this.activeMissionsLabel);
             this.Controls.Add(this.activeMissionsTable);
@@ -216,5 +229,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn typeColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn targetColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn scopeColumn;
+        private System.Windows.Forms.Button btnDeleteMission;
     }
 }

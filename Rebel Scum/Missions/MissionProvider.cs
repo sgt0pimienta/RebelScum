@@ -25,6 +25,7 @@ namespace RebelScum.Missions
 
         public static void SaveActiveMissions()
         {
+            File.Delete("mission.xml");
             using (var missionFileStream = File.OpenWrite("mission.xml"))
             {
                 activeMissionSerializer.Serialize(missionFileStream, RebelScumGame.activeMissions);
@@ -38,6 +39,7 @@ namespace RebelScum.Missions
             newMission.MissionType = type;
             newMission.MissionScope = scope;
             newMission.Id = (RebelScumGame.activeMissionCount + 1);
+            RebelScumGame.activeMissionCount += 1;
             return newMission;
         }
 
