@@ -46,8 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Planet.cs" />
-    <Compile Include="Classes\StarSystem.cs" />
+    <Compile Include="Galaxies\Galaxy.cs" />
+    <Compile Include="Galaxies\GalaxyManager.cs" />
+    <Compile Include="Galaxies\Planet.cs" />
+    <Compile Include="Galaxies\StarSystem.cs" />
     <Compile Include="MainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +74,7 @@
     <Compile Include="Screens\ScreenBase.Designer.cs">
       <DependentUpon>ScreenBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="UnitsResources\Resource.cs" />
     <EmbeddedResource Include="MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
     </EmbeddedResource>
@@ -109,6 +112,7 @@
     <Content Include="Resources\Buttons\MissionsButton.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Classes\" />
     <Folder Include="Model\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

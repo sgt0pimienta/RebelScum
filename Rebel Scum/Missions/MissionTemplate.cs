@@ -12,7 +12,7 @@ namespace RebelScum.Missions
         public int Id { get; set; }
         public string Name { get; set; }
         public string Scope { get; set; }
-        public string MissionType { get; set; }
-        public bool playerAccessible { get; set; }
+        public string Alignment { get; set; }
+        public string Type { get; set; }
     }
 }

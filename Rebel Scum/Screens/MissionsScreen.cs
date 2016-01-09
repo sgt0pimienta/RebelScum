@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using RebelScum.Missions;
-using RebelScum.Classes;
 
 namespace RebelScum.Screens
 {
@@ -20,15 +19,26 @@ namespace RebelScum.Screens
         public static string mission;
         public static BindingList<Mission> activeMissionsBindingList;
 
+        public static MissionTemplate missioninitiator;
+
         public MissionsScreen() : base()
         {
             InitializeComponent();
             activeMissionsTable.AutoGenerateColumns = false;
-            activeMissionsBindingList = new BindingList<Mission>(RebelScumGame.activeMissions);
+            activeMissionsBindingList = new BindingList<Mission>(RebelScumGame.ActiveMissions);
             activeMissionsTable.DataSource = activeMissionsBindingList;
+
+            missioninitiator = new MissionTemplate();
+            missioninitiator.Id = 1;
+            missioninitiator.Alignment = "Rebellion";
+            missioninitiator.Scope = "System";
+            missioninitiator.Name = "Agressive blockade of system trading";
+            missioninitiator.Type = "Economic";
+            RebelScumGame.AllMissionTemplates.Add(missioninitiator);
+            MissionProvider.WriteAllMissionsList();
         }
 
-        public void activeMissionListRefresh(List<string> targetList)
+        public void ActiveMissionListRefresh(List<string> targetList)
         {
             //missionListDropdown.Items.Clear();
             //missionListDropdown.Items.Add(targetList);
@@ -56,7 +66,7 @@ namespace RebelScum.Screens
             //    return;
             //}
 
-            activeMissionsBindingList.Add(MissionProvider.createMission("Test", missionTypeDropdown.Text, missionScopeDropdown.Text));
+            activeMissionsBindingList.Add(MissionProvider.CreateMission("Test", missionTypeDropdown.Text, missionScopeDropdown.Text));
         }
 
         private void MissionsScreen_FormClosing(object sender, FormClosingEventArgs e)

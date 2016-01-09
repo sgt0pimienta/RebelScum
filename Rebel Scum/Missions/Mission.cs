@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using RebelScum.Classes;
+using RebelScum.Galaxies;
 using System.Xml.Serialization;
 
 namespace RebelScum.Missions
@@ -16,11 +16,23 @@ namespace RebelScum.Missions
         public MissionTemplate MissionTemplate { get; set; }
         public string MissionScope { get; set; }
         public string MissionType { get; set; }
+        public List<int> TargetPlanetId { get; set; }
 
         [XmlIgnore]
         public Planet TargetPlanet { get; set; }
         public StarSystem TargetSystem { get; set; }
 
-        public int TargetPlanetId { get; set; }
+        public Mission()
+        {
+
+        }
+
+        public Mission(string name, string type, string scope /*List<Planet> target planets */ )
+        {
+            Name = name;
+            MissionType = type;
+            MissionScope = scope;
+        }
+
     }
 }

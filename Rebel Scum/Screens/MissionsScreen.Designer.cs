@@ -78,7 +78,7 @@
             this.missionTypeDropdown.FormattingEnabled = true;
             this.missionTypeDropdown.Items.AddRange(new object[] {
             "Diplomatic",
-            "military",
+            "Military",
             "Intelligence",
             "Sabotage",
             "Economic",
