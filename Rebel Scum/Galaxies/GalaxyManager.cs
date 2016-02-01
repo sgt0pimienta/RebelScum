@@ -19,7 +19,7 @@ namespace RebelScum.Galaxies
             var newGalaxy = new Galaxy();
             newGalaxy.Id = 1;
             newGalaxy.Name = "Milky Way";
-            int starSystemNumber = random.Next(300, 1000);
+            int starSystemNumber = random.Next(25, 50);
 
             for (int i = 1; i < starSystemNumber; i++)
             {
@@ -38,16 +38,17 @@ namespace RebelScum.Galaxies
             newSystem.Name = systemNames[systemNameIndex];
             systemNames.Remove(systemNames[systemNameIndex]);
 
-            if (random.Next(1,100)>99){newSystem.Status = "Free";}
-            else{newSystem.Status = "Hegmon";}
+            if (random.Next(1, 100) > 99) { newSystem.Status = "Rebel"; }
+            else { newSystem.Status = "Hegmon"; }
 
             for (int i = 1; i < planetsInSystem; i++)
             {
-                newSystem.Planets.Add(createPlanet(i, planetsInSystem, newSystem.Status, random.Next(1,25),newSystem.Name));
+                newSystem.Planets.Add(createPlanet(i, planetsInSystem, newSystem.Status, random.Next(1, 25), newSystem.Name));
             }
 
             RebelScumGame.SystemCount += 1;
             RebelScumGame.CreatedSystemCount += 1;
+            newSystem.UpdateTotalResources();
             return newSystem;
         }
 
@@ -71,8 +72,8 @@ namespace RebelScum.Galaxies
             {
                 switch (newPlanet.planetNumber)
                 {
-                    case 1:  newPlanet.Name = systemName + " Prime"; break;
-                    case 2:  newPlanet.Name = systemName + " II"; break;
+                    case 1: newPlanet.Name = systemName + " Prime"; break;
+                    case 2: newPlanet.Name = systemName + " II"; break;
                     case 3: newPlanet.Name = systemName + " III"; break;
                     case 4: newPlanet.Name = systemName + " IV"; break;
                     case 5: newPlanet.Name = systemName + " V"; break;
@@ -91,18 +92,43 @@ namespace RebelScum.Galaxies
             }
 
             newPlanet.Size = random.Next(1000, 100000);
-            newPlanet.Temperature = (random.Next(1, 100))*(systemTempMultiplyer)*((16)-(newPlanet.planetNumber));
+            newPlanet.Temperature = (random.Next(1, 100)) * (systemTempMultiplyer) * ((16) - (newPlanet.planetNumber));
 
-            foreach(var resource in newPlanet.PlanetResources)
+            foreach (var resource in newPlanet.PlanetResources)
             {
-                resource.Availability = 2 ^ ((random.Next(1, 100) + (resource.Availability)) -30/10);
+                resource.Availability = 2 ^ ((random.Next(1, 100) + (resource.Availability)) - 30 / 10);
                 if (resource.Availability < 0) { resource.Availability = 0; }
-                resource.Quantity = resource.Availability * 100;
+                resource.Quantity = resource.Availability * (newPlanet.Size / 1000);
+                if (resource.Quantity < 0) { resource.Quantity = 0; }
             }
 
             RebelScumGame.CreatedPlanetCount += 1;
             RebelScumGame.PlanetCount += 1;
             return newPlanet;
+        } 
+
+        public static List<string> FetchSystemNames()
+        {
+            var starSystemNameList = new List<string>();
+            
+            foreach(StarSystem system in RebelScumGame.Galaxy.StarSystems) { starSystemNameList.Add(system.Name); }
+
+            return starSystemNameList;
+        }
+
+        public static List<string> FetchLocalPlanetNames(string systemName)
+        {
+            var planetNameList = new List<string>();
+
+            foreach(StarSystem starSystem in RebelScumGame.Galaxy.StarSystems)
+            {
+                if(starSystem.Name == systemName)
+                {
+                    foreach (Planet evaluatedPlanet in starSystem.Planets) { planetNameList.Add(evaluatedPlanet.Name); }
+                }
+            }
+
+            return planetNameList;
         }
     }
 }

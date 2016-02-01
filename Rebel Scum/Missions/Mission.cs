@@ -17,10 +17,8 @@ namespace RebelScum.Missions
         public string MissionScope { get; set; }
         public string MissionType { get; set; }
         public List<int> TargetPlanetId { get; set; }
+        public StarSystem TargetSystemId { get; set; }
 
-        [XmlIgnore]
-        public Planet TargetPlanet { get; set; }
-        public StarSystem TargetSystem { get; set; }
 
         public Mission()
         {

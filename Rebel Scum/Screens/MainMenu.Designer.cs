@@ -49,6 +49,7 @@
             this.ClientSize = new System.Drawing.Size(1069, 81);
             this.Controls.Add(this.MissionsButton);
             this.Name = "MainMenu";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainMenu   --- Rebel Scum V 0.1";
             this.Shown += new System.EventHandler(this.MainMenu_Shown);
             this.ResumeLayout(false);

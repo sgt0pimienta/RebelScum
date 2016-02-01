@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using RebelScum.Missions;
+using RebelScum.Galaxies;
 
 namespace RebelScum.Screens
 {
@@ -18,70 +19,104 @@ namespace RebelScum.Screens
         public static string missionType;
         public static string mission;
         public static BindingList<Mission> activeMissionsBindingList;
-
-        public static MissionTemplate missioninitiator;
+        public static List<MissionTemplate> availableMissionList;
 
         public MissionsScreen() : base()
         {
             InitializeComponent();
             activeMissionsTable.AutoGenerateColumns = false;
-            activeMissionsBindingList = new BindingList<Mission>(RebelScumGame.ActiveMissions);
+            activeMissionsBindingList = new BindingList<Mission>(MissionProvider.FetchLoadedMissions());
             activeMissionsTable.DataSource = activeMissionsBindingList;
-
-            missioninitiator = new MissionTemplate();
-            missioninitiator.Id = 1;
-            missioninitiator.Alignment = "Rebellion";
-            missioninitiator.Scope = "System";
-            missioninitiator.Name = "Agressive blockade of system trading";
-            missioninitiator.Type = "Economic";
-            RebelScumGame.AllMissionTemplates.Add(missioninitiator);
-            MissionProvider.WriteAllMissionsList();
         }
 
-        public void ActiveMissionListRefresh(List<string> targetList)
+        public void RefreshAvailableMissions()
         {
-            //missionListDropdown.Items.Clear();
-            //missionListDropdown.Items.Add(targetList);
+            missionNameDropdown.Items.Clear();
+            availableMissionList = new List<MissionTemplate>((MissionProvider.BuildPossibleMissionList(this.missionTypeDropdown.Text, this.missionScopeDropdown.Text)));
+            foreach (MissionTemplate element in availableMissionList)
+            {
+                missionNameDropdown.Items.Add(element.Name);
+            }
+        }
+
+        public void RefreshTargetSystems()
+        {
+            targetSystemDropdown.Items.Clear();
+            if (missionScopeDropdown.Text != "Galaxy")
+            {
+                foreach (String starSystemName in GalaxyManager.FetchSystemNames())
+                {
+                    targetSystemDropdown.Items.Add(starSystemName);
+                }
+            }
+            else { targetSystemDropdown.Items.Add("N/A"); }
+        }
+
+        public void RefreshTargetPlanets()
+        {
+            targetPlanetDropdown.Items.Clear();
+            if (missionScopeDropdown.Text == "Planet")
+            {
+                foreach (String planetName in GalaxyManager.FetchLocalPlanetNames(targetSystemDropdown.Text))
+                {
+                    targetPlanetDropdown.Items.Add(planetName);
+                }
+            }
+            else { targetPlanetDropdown.Items.Add("N/A"); }
+
         }
 
         private void missionScopeDropdown_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //availablemissionListRefresh(null);
+            RefreshAvailableMissions();
+            RefreshTargetPlanets();
+            RefreshTargetSystems();
         }
 
         private void missionTypeDropdown_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //availablemissionListRefresh(null);
+            RefreshAvailableMissions();
         }
 
         private void createMissionButton_Click(object sender, EventArgs e)
         {
-            //if (string.IsNullOrWhiteSpace(missionTypeDropdown.Text))
-            //{
-            //    var result = MessageBox.Show("You must select a mission type, dingus", "Dingus Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            //    if(result == DialogResult.No)
-            //    {
-            //        MessageBox.Show("Don't alegate");
-            //    }
-            //    return;
-            //}
+            if (string.IsNullOrWhiteSpace(missionTypeDropdown.Text))
+            {
+                var result = MessageBox.Show("You must select a mission type, dingus", "Dingus Alert", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-            activeMissionsBindingList.Add(MissionProvider.CreateMission("Test", missionTypeDropdown.Text, missionScopeDropdown.Text));
+            activeMissionsBindingList.Add(MissionProvider.CreateMission(missionNameDropdown.Text, missionTypeDropdown.Text, missionScopeDropdown.Text));
         }
 
         private void MissionsScreen_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //activeMissionsBindingList = new BindingList<Mission>(RebelScumGame.activeMissions);
-            //RebelScumGame.activeMissions = activeMissionsBindingList.ToList();
-            MissionProvider.SaveActiveMissions();
-            //
-            //** ^^^ Poner en MainMenu o en RebelScumGame ^^^ **
-            //
+            MissionProvider.SerializeActiveMissions();
         }
 
         private void btnDeleteMission_Click(object sender, EventArgs e)
         {
             activeMissionsBindingList.Remove((Mission)activeMissionsTable.SelectedRows[0].DataBoundItem);
+        }
+
+        private void MissionsScreen_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void missionListDropdown_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void targetSystemDropdown_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshTargetPlanets();
         }
     }
 }

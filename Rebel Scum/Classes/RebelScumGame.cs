@@ -30,9 +30,9 @@ namespace RebelScum
 
         static RebelScumGame()
         {
-            ActiveMissions = MissionProvider.GetActiveMissions();
+            ActiveMissions = MissionProvider.DeserializeActiveMissions();
+            AllMissionTemplates = MissionProvider.DeserializeMissionTemplateList();
             CreatedMissionCount = ActiveMissions.Count;
-            AllMissionTemplates = new List<MissionTemplate>();
             Galaxy = GalaxyManager.createGalaxy();
         }
     }

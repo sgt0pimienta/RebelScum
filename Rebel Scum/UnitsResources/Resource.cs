@@ -12,6 +12,7 @@ namespace RebelScum.UnitsResources
         public string Name { get; set; }
         public int Quantity { get; set; }
         public int Availability { get; set; }
+        public string Owner { get; set; }
 
         public Resource() { }
 
