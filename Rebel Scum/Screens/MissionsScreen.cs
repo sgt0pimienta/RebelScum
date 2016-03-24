@@ -49,7 +49,7 @@ namespace RebelScum.Screens
                     targetSystemDropdown.Items.Add(starSystemName);
                 }
             }
-            else { targetSystemDropdown.Items.Add("N/A"); }
+            //else { targetSystemDropdown.Items.Add("N/A"); }
         }
 
         public void RefreshTargetPlanets()
@@ -62,7 +62,7 @@ namespace RebelScum.Screens
                     targetPlanetDropdown.Items.Add(planetName);
                 }
             }
-            else { targetPlanetDropdown.Items.Add("N/A"); }
+            //else { targetPlanetDropdown.Items.Add("N/A"); }
 
         }
 
@@ -86,7 +86,7 @@ namespace RebelScum.Screens
                 return;
             }
 
-            activeMissionsBindingList.Add(MissionProvider.CreateMission(missionNameDropdown.Text, missionTypeDropdown.Text, missionScopeDropdown.Text));
+            activeMissionsBindingList.Add(MissionProvider.CreateMission(missionNameDropdown.Text, missionTypeDropdown.Text, missionScopeDropdown.Text, targetSystemDropdown.Text, targetPlanetDropdown.Text));
         }
 
         private void MissionsScreen_FormClosing(object sender, FormClosingEventArgs e)
@@ -105,11 +105,6 @@ namespace RebelScum.Screens
         }
 
         private void missionListDropdown_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
         {
 
         }

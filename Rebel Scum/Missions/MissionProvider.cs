@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using RebelScum.Galaxies;
 
 namespace RebelScum.Missions
 {
@@ -31,14 +32,46 @@ namespace RebelScum.Missions
             }
         }
 
-        public static Mission CreateMission(string name, string type, string scope)
+        public static Mission CreateMission(string name, string type, string scope, string starSystem, string planet)
         {
-            Mission newMission = new Mission(name, type, scope);
-            newMission.Id = (RebelScumGame.CreatedMissionCount + 1);
-            RebelScumGame.CreatedMissionCount += 1;
-            return newMission;
+            int newID = RebelScumGame.CreatedMissionCount += 1;
 
-            //Possibly integrate all that stuff into the mission initializer? ^^^^^^^
+            if (scope == "Galaxy")
+            {
+                Mission newMission = new Mission(newID, name, type, scope, null, null);
+                return newMission;
+            }
+            else if (scope == "System")
+            {
+                List<string> targetedPlanets = new List<string>();
+
+                foreach (StarSystem examinedStarSystem in RebelScumGame.Galaxy.StarSystems)
+                {
+                    if (examinedStarSystem.Name == starSystem)
+                    {
+                        foreach (Planet examinedPlanet in examinedStarSystem.Planets)
+                        {
+                            targetedPlanets.Add(examinedPlanet.Name);
+                        }
+                    }
+                }
+
+                Mission newMission = new Mission(newID, name, type, scope, starSystem, targetedPlanets);
+                return newMission;
+            }
+            else
+            {
+                List<string> targetedPlanet = new List<string>();
+                Mission newMission = new Mission(newID, name, type, scope, starSystem, targetedPlanet);
+                return newMission;
+            }
+
+
+            
+            
+         
+
+            //Possibly integrate all that stuff into the mission constructor method? ^^^^^^^
         }
 
         public static List<MissionTemplate> DeserializeMissionTemplateList()

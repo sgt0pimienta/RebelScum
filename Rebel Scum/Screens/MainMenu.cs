@@ -16,7 +16,7 @@ namespace RebelScum
         public MainMenu()
         {
             InitializeComponent();
-            RebelScumGame.GameStart = DateTime.Now;
+            //RebelScumGame.GameStart = DateTime.Now;
         }
 
         private void MissionsButton_Click(object sender, EventArgs e)
