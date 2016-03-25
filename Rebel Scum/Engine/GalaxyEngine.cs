@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Serialization;
-using System.IO;
+using RebelScum.Model;
 
-namespace RebelScum.Galaxies
+namespace RebelScum.Engine
 {
-    public static class GalaxyManager
+    public class GalaxyEngine
     {
-        private static Random random = new Random();
-        private static List<string> systemNames = new List<string>(File.ReadAllLines("SystemNames.txt"));
-        private static List<string> planetNames = new List<string>(File.ReadAllLines("PlanetNames.txt"));
 
-        public static Galaxy createGalaxy()
-        {
+        private static Random random = new Random();
+        private static List<string> systemNames = GameState.StarSystemNames;
+        private static List<string> planetNames = GameState.PlanetNames;
+
+        public  Galaxy CreateGalaxy()
+       { 
             var newGalaxy = new Galaxy();
             newGalaxy.Id = 1;
             newGalaxy.Name = "Milky Way";
@@ -23,16 +23,16 @@ namespace RebelScum.Galaxies
 
             for (int i = 1; i < starSystemNumber; i++)
             {
-                newGalaxy.StarSystems.Add(createSystem());
+                newGalaxy.StarSystems.Add(CreateSystem());
             }
 
             return newGalaxy;
         }
 
-        public static StarSystem createSystem()
+        public  StarSystem CreateSystem()
         {
             var newSystem = new StarSystem();
-            newSystem.Id = RebelScumGame.CreatedSystemCount + 1;
+            newSystem.Id = GameState.CreatedSystemCount + 1;
             int planetsInSystem = random.Next(1, 15);
             var systemNameIndex = random.Next(systemNames.Count);
             newSystem.Name = systemNames[systemNameIndex];
@@ -43,23 +43,23 @@ namespace RebelScum.Galaxies
 
             for (int i = 1; i < planetsInSystem; i++)
             {
-                newSystem.Planets.Add(createPlanet(i, planetsInSystem, newSystem.Status, random.Next(1, 25), newSystem.Name));
+                newSystem.Planets.Add(CreatePlanet(i, planetsInSystem, newSystem.Status, random.Next(1, 25), newSystem.Name));
             }
 
-            RebelScumGame.SystemCount += 1;
-            RebelScumGame.CreatedSystemCount += 1;
+            GameState.SystemCount += 1;
+            GameState.CreatedSystemCount += 1;
             newSystem.UpdateTotalResources();
             return newSystem;
         }
 
-        public static Planet createPlanet(int planetNumber, int planetsInSystem, string systemStatus, int systemTempMultiplyer, string systemName)
+        public  Planet CreatePlanet(int planetNumber, int planetsInSystem, string systemStatus, int systemTempMultiplyer, string systemName)
         {
 
 
             var newPlanet = new Planet();
 
             newPlanet.planetNumber = planetNumber;
-            newPlanet.Id = RebelScumGame.CreatedPlanetCount + 1;
+            newPlanet.Id = GameState.CreatedPlanetCount + 1;
             newPlanet.Status = systemStatus;
 
             if (planetNames.Count > 15)
@@ -102,33 +102,9 @@ namespace RebelScum.Galaxies
                 if (resource.Quantity < 0) { resource.Quantity = 0; }
             }
 
-            RebelScumGame.CreatedPlanetCount += 1;
-            RebelScumGame.PlanetCount += 1;
+            GameState.CreatedPlanetCount += 1;
+            GameState.PlanetCount += 1;
             return newPlanet;
-        } 
-
-        public static List<string> FetchSystemNames()
-        {
-            var starSystemNameList = new List<string>();
-            
-            foreach(StarSystem system in RebelScumGame.Galaxy.StarSystems) { starSystemNameList.Add(system.Name); }
-
-            return starSystemNameList;
-        }
-
-        public static List<string> FetchLocalPlanetNames(string systemName)
-        {
-            var planetNameList = new List<string>();
-
-            foreach(StarSystem starSystem in RebelScumGame.Galaxy.StarSystems)
-            {
-                if(starSystem.Name == systemName)
-                {
-                    foreach (Planet evaluatedPlanet in starSystem.Planets) { planetNameList.Add(evaluatedPlanet.Name); }
-                }
-            }
-
-            return planetNameList;
         }
     }
 }

@@ -46,23 +46,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Galaxies\Galaxy.cs" />
-    <Compile Include="Galaxies\GalaxyManager.cs" />
-    <Compile Include="Galaxies\Planet.cs" />
-    <Compile Include="Galaxies\StarSystem.cs" />
-    <Compile Include="Classes\Inventory.cs" />
+    <Compile Include="Engine\RebelEngine.cs" />
+    <Compile Include="Engine\GalaxyEngine.cs" />
+    <Compile Include="Engine\Calendar.cs" />
+    <Compile Include="Engine\MissionEngine.cs" />
+    <Compile Include="Model\Galaxy.cs" />
+    <Compile Include="Services\GalaxyManager.cs" />
+    <Compile Include="Model\Planet.cs" />
+    <Compile Include="Model\StarSystem.cs" />
+    <Compile Include="Engine\Inventory.cs" />
     <Compile Include="Screens\MainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Screens\MainMenu.Designer.cs">
       <DependentUpon>MainMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Missions\MissionProvider.cs" />
-    <Compile Include="Missions\Mission.cs" />
-    <Compile Include="Missions\MissionTemplate.cs" />
+    <Compile Include="Services\MissionManager.cs" />
+    <Compile Include="Model\Mission.cs" />
+    <Compile Include="Model\MissionTemplate.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Classes\RebelScumGame.cs" />
+    <Compile Include="Engine\GameState.cs" />
     <Compile Include="Screens\MissionsScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,9 +79,11 @@
     <Compile Include="Screens\ScreenBase.Designer.cs">
       <DependentUpon>ScreenBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="UnitsResources\Resource.cs" />
+    <Compile Include="Services\GameStateManager.cs" />
+    <Compile Include="Model\Resource.cs" />
     <EmbeddedResource Include="Screens\MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -112,9 +118,7 @@
     <Content Include="Resources\Buttons\icon-for-wp.png" />
     <Content Include="Resources\Buttons\MissionsButton.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

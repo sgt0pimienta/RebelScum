@@ -7,8 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using RebelScum.Missions;
-using RebelScum.Galaxies;
+using RebelScum.Model;
+using RebelScum.Engine;
 
 namespace RebelScum.Screens
 {
@@ -25,17 +25,20 @@ namespace RebelScum.Screens
         {
             InitializeComponent();
             activeMissionsTable.AutoGenerateColumns = false;
-            activeMissionsBindingList = new BindingList<Mission>(MissionProvider.FetchLoadedMissions());
+            activeMissionsBindingList = new BindingList<Mission>(GameState.ActiveMissions);
             activeMissionsTable.DataSource = activeMissionsBindingList;
         }
 
         public void RefreshAvailableMissions()
         {
             missionNameDropdown.Items.Clear();
-            availableMissionList = new List<MissionTemplate>((MissionProvider.BuildPossibleMissionList(this.missionTypeDropdown.Text, this.missionScopeDropdown.Text)));
-            foreach (MissionTemplate element in availableMissionList)
+
+            foreach (MissionTemplate template in GameState.AllMissionTemplates)
             {
-                missionNameDropdown.Items.Add(element.Name);
+                if ((template.Scope == this.missionScopeDropdown.Text)&&(template.Type == this.missionTypeDropdown.Text))
+                {
+                    missionNameDropdown.Items.Add(template.Name);
+                }
             }
         }
 
@@ -44,12 +47,11 @@ namespace RebelScum.Screens
             targetSystemDropdown.Items.Clear();
             if (missionScopeDropdown.Text != "Galaxy")
             {
-                foreach (String starSystemName in GalaxyManager.FetchSystemNames())
+                foreach (StarSystem starSystem in GameState.Galaxy.StarSystems)
                 {
-                    targetSystemDropdown.Items.Add(starSystemName);
+                    targetSystemDropdown.Items.Add(starSystem.Name);
                 }
             }
-            //else { targetSystemDropdown.Items.Add("N/A"); }
         }
 
         public void RefreshTargetPlanets()
@@ -57,13 +59,54 @@ namespace RebelScum.Screens
             targetPlanetDropdown.Items.Clear();
             if (missionScopeDropdown.Text == "Planet")
             {
-                foreach (String planetName in GalaxyManager.FetchLocalPlanetNames(targetSystemDropdown.Text))
+                foreach (StarSystem starSystem in GameState.Galaxy.StarSystems)
                 {
-                    targetPlanetDropdown.Items.Add(planetName);
+                    if (starSystem.Name == targetSystemDropdown.Text)
+                    {
+                        foreach (Planet planet in starSystem.Planets)
+                        {
+                            targetPlanetDropdown.Items.Add(planet.Name);
+                        }
+                    }
                 }
             }
-            //else { targetPlanetDropdown.Items.Add("N/A"); }
+        }
 
+        public bool ValidateMissionParameters()
+        {
+            if (string.IsNullOrWhiteSpace(missionScopeDropdown.Text))
+            {
+                MessageBox.Show("Select mission scope", "Invalid Mission", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                return false;
+            }
+            else
+            {
+                if (missionScopeDropdown.Text == "Galaxy")
+                {
+                    if ((string.IsNullOrWhiteSpace(missionTypeDropdown.Text)) || (string.IsNullOrWhiteSpace(missionNameDropdown.Text)))
+                    {
+                        MessageBox.Show("Missing mission parameters", "Invalid Mission", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                        return false;
+                    }
+                }
+                else if (missionScopeDropdown.Text == "System")
+                {
+                    if ((string.IsNullOrWhiteSpace(missionTypeDropdown.Text) || (string.IsNullOrWhiteSpace(missionNameDropdown.Text) || (string.IsNullOrWhiteSpace(targetSystemDropdown.Text)))))
+                    {
+                        MessageBox.Show("Missing mission parameters", "Invalid Mission", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                        return false;
+                    }
+                }
+                else if (missionScopeDropdown.Text == "Planet")
+                {
+                    if ((string.IsNullOrWhiteSpace(missionTypeDropdown.Text) || (string.IsNullOrWhiteSpace(missionNameDropdown.Text) || (string.IsNullOrWhiteSpace(targetSystemDropdown.Text) || (string.IsNullOrWhiteSpace(targetPlanetLabel.Text))))))
+                    {
+                        MessageBox.Show("Missing mission parameters", "Invalid Mission", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                        return false;
+                    }
+                }
+                return true;
+            }
         }
 
         private void missionScopeDropdown_SelectedIndexChanged(object sender, EventArgs e)
@@ -80,18 +123,17 @@ namespace RebelScum.Screens
 
         private void createMissionButton_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(missionTypeDropdown.Text))
+            if (ValidateMissionParameters() == true)
             {
-                var result = MessageBox.Show("You must select a mission type, dingus", "Dingus Alert", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                if (ValidateMissionParameters() == true)
+                {
+                    activeMissionsBindingList.Add(RebelEngine.MissionEngine.CreateMission(missionNameDropdown.Text, missionTypeDropdown.Text, missionScopeDropdown.Text, targetSystemDropdown.Text, targetPlanetDropdown.Text));
+                }
             }
-
-            activeMissionsBindingList.Add(MissionProvider.CreateMission(missionNameDropdown.Text, missionTypeDropdown.Text, missionScopeDropdown.Text, targetSystemDropdown.Text, targetPlanetDropdown.Text));
         }
 
         private void MissionsScreen_FormClosing(object sender, FormClosingEventArgs e)
         {
-            MissionProvider.SerializeActiveMissions();
         }
 
         private void btnDeleteMission_Click(object sender, EventArgs e)

@@ -35,6 +35,10 @@
             this.missionNameDropdown = new System.Windows.Forms.ComboBox();
             this.missionNameLabel = new System.Windows.Forms.Label();
             this.activeMissionsTable = new System.Windows.Forms.DataGridView();
+            this.MissionTypeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ScopeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TargetSystemColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.activeMissionsLabel = new System.Windows.Forms.Label();
             this.btnCreateMission = new System.Windows.Forms.Button();
             this.btnDeleteMission = new System.Windows.Forms.Button();
@@ -42,11 +46,6 @@
             this.targetPlanetDropdown = new System.Windows.Forms.ComboBox();
             this.targetSystemLabel = new System.Windows.Forms.Label();
             this.targetPlanetLabel = new System.Windows.Forms.Label();
-            this.MissionTypeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ScopeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TargetSystemColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TargetPlanetsColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.NameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.activeMissionsTable)).BeginInit();
             this.SuspendLayout();
             // 
@@ -141,13 +140,44 @@
             this.MissionTypeColumn,
             this.ScopeColumn,
             this.TargetSystemColumn,
-            this.TargetPlanetsColumn,
             this.NameColumn});
             this.activeMissionsTable.Location = new System.Drawing.Point(12, 294);
             this.activeMissionsTable.Name = "activeMissionsTable";
             this.activeMissionsTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.activeMissionsTable.Size = new System.Drawing.Size(772, 135);
             this.activeMissionsTable.TabIndex = 20;
+            // 
+            // MissionTypeColumn
+            // 
+            this.MissionTypeColumn.DataPropertyName = "Type";
+            this.MissionTypeColumn.HeaderText = "Type";
+            this.MissionTypeColumn.Name = "MissionTypeColumn";
+            this.MissionTypeColumn.ReadOnly = true;
+            this.MissionTypeColumn.Width = 56;
+            // 
+            // ScopeColumn
+            // 
+            this.ScopeColumn.DataPropertyName = "Scope";
+            this.ScopeColumn.HeaderText = "Scope";
+            this.ScopeColumn.Name = "ScopeColumn";
+            this.ScopeColumn.ReadOnly = true;
+            this.ScopeColumn.Width = 63;
+            // 
+            // TargetSystemColumn
+            // 
+            this.TargetSystemColumn.DataPropertyName = "summarizedTarget";
+            this.TargetSystemColumn.HeaderText = "Target";
+            this.TargetSystemColumn.Name = "TargetSystemColumn";
+            this.TargetSystemColumn.ReadOnly = true;
+            this.TargetSystemColumn.Width = 63;
+            // 
+            // NameColumn
+            // 
+            this.NameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.NameColumn.DataPropertyName = "Name";
+            this.NameColumn.HeaderText = "Name";
+            this.NameColumn.Name = "NameColumn";
+            this.NameColumn.ReadOnly = true;
             // 
             // activeMissionsLabel
             // 
@@ -221,40 +251,6 @@
             this.targetPlanetLabel.TabIndex = 27;
             this.targetPlanetLabel.Text = "Target Planet:";
             // 
-            // MissionTypeColumn
-            // 
-            this.MissionTypeColumn.HeaderText = "Type";
-            this.MissionTypeColumn.Name = "MissionTypeColumn";
-            this.MissionTypeColumn.ReadOnly = true;
-            this.MissionTypeColumn.Width = 56;
-            // 
-            // ScopeColumn
-            // 
-            this.ScopeColumn.HeaderText = "Scope";
-            this.ScopeColumn.Name = "ScopeColumn";
-            this.ScopeColumn.ReadOnly = true;
-            this.ScopeColumn.Width = 63;
-            // 
-            // TargetSystemColumn
-            // 
-            this.TargetSystemColumn.HeaderText = "Target System";
-            this.TargetSystemColumn.Name = "TargetSystemColumn";
-            this.TargetSystemColumn.ReadOnly = true;
-            // 
-            // TargetPlanetsColumn
-            // 
-            this.TargetPlanetsColumn.HeaderText = "Target Planets";
-            this.TargetPlanetsColumn.Name = "TargetPlanetsColumn";
-            this.TargetPlanetsColumn.ReadOnly = true;
-            this.TargetPlanetsColumn.Width = 82;
-            // 
-            // NameColumn
-            // 
-            this.NameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.NameColumn.HeaderText = "Name";
-            this.NameColumn.Name = "NameColumn";
-            this.NameColumn.ReadOnly = true;
-            // 
             // MissionsScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -303,7 +299,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn MissionTypeColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ScopeColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn TargetSystemColumn;
-        private System.Windows.Forms.DataGridViewComboBoxColumn TargetPlanetsColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn NameColumn;
     }
 }

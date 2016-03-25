@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RebelScum.Galaxies
+namespace RebelScum.Model
 {
     [Serializable]
     public class Galaxy

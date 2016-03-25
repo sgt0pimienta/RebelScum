@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RebelScum
 {
-    class Inventory
+    public class Inventory
     {
         public string owner { get; set; }
         public int credits { get; set; }

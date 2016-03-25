@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using RebelScum.Galaxies;
 using System.Xml.Serialization;
 
-namespace RebelScum.Missions
+namespace RebelScum.Model
 {
     [Serializable]
     public class Mission
@@ -18,6 +17,7 @@ namespace RebelScum.Missions
         public string Type { get; set; }
         public List<string> TargetPlanets { get; set; }
         public string TargetSystem { get; set; }
+        public string summarizedTarget { get; set; }
 
 
 
@@ -26,7 +26,7 @@ namespace RebelScum.Missions
         //Don't say I didn't warn you
         public Mission()
         {
-
+            TargetPlanets = new List<string>();
         }
 
         public Mission(int id, string name, string type, string scope, string targetSystem, List<string> targetPlanets)
