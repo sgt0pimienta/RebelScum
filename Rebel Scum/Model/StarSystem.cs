@@ -12,7 +12,8 @@ namespace RebelScum.Model
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Status { get; set; }
+        public int Ownership { get; set; }
+        public int Support { get; set; } 
         public List<Planet> Planets { get; set; }
 
         public int TotalGenevaGas { get; set; }

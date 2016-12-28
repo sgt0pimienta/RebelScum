@@ -48,20 +48,18 @@
   <ItemGroup>
     <Compile Include="Engine\RebelEngine.cs" />
     <Compile Include="Engine\GalaxyEngine.cs" />
-    <Compile Include="Engine\Calendar.cs" />
+    <Compile Include="Engine\CalendarEngine.cs" />
     <Compile Include="Engine\MissionEngine.cs" />
     <Compile Include="Model\Galaxy.cs" />
-    <Compile Include="Services\GalaxyManager.cs" />
     <Compile Include="Model\Planet.cs" />
     <Compile Include="Model\StarSystem.cs" />
-    <Compile Include="Engine\Inventory.cs" />
+    <Compile Include="Engine\InventoryEngine.cs" />
     <Compile Include="Screens\MainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Screens\MainMenu.Designer.cs">
       <DependentUpon>MainMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Services\MissionManager.cs" />
     <Compile Include="Model\Mission.cs" />
     <Compile Include="Model\MissionTemplate.cs" />
     <Compile Include="Program.cs" />
@@ -73,11 +71,23 @@
     <Compile Include="Screens\MissionsScreen.Designer.cs">
       <DependentUpon>MissionsScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Screens\ReportsScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\ReportsScreen.Designer.cs">
+      <DependentUpon>ReportsScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Screens\ScreenBase.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Screens\ScreenBase.Designer.cs">
       <DependentUpon>ScreenBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\StartScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\StartScreen.Designer.cs">
+      <DependentUpon>StartScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="Services\GameStateManager.cs" />
     <Compile Include="Model\Resource.cs" />
@@ -98,8 +108,14 @@
     <EmbeddedResource Include="Screens\MissionsScreen.resx">
       <DependentUpon>MissionsScreen.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Screens\ReportsScreen.resx">
+      <DependentUpon>ReportsScreen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Screens\ScreenBase.resx">
       <DependentUpon>ScreenBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\StartScreen.resx">
+      <DependentUpon>StartScreen.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

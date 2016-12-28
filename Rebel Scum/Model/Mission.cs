@@ -15,28 +15,27 @@ namespace RebelScum.Model
         public MissionTemplate MissionTemplate { get; set; }
         public string Scope { get; set; }
         public string Type { get; set; }
-        public List<string> TargetPlanets { get; set; }
-        public string TargetSystem { get; set; }
-        public string summarizedTarget { get; set; }
-
-
+        public string Target { get; set; }
+        public int BaseSuccessChance { get; set; }
+        public bool CanBackfire { get; set; }
 
         //DO NOT DELETE THIS SEEMINGLY USELESS CONSTRUCTOR METHOD *Parameterless constructor needed for serialization* (Seriously, trust me, do NOT delete this)... (IM SERIOUS)
         //Fine, delete it if you must
         //Don't say I didn't warn you
         public Mission()
         {
-            TargetPlanets = new List<string>();
+
         }
 
-        public Mission(int id, string name, string type, string scope, string targetSystem, List<string> targetPlanets)
-        {
+        public Mission(int id, string name, string type, string scope, string target)
+        { 
             Id = id;
             Name = name;
             Type = type;
             Scope = scope;
-            TargetPlanets = targetPlanets;
-            TargetSystem = targetSystem;
+            Target = target;
+
+
         }
 
     }

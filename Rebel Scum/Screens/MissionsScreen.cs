@@ -25,7 +25,7 @@ namespace RebelScum.Screens
         {
             InitializeComponent();
             activeMissionsTable.AutoGenerateColumns = false;
-            activeMissionsBindingList = new BindingList<Mission>(GameState.ActiveMissions);
+            activeMissionsBindingList = new BindingList<Mission>(RebelEngine.GameState.ActiveMissions);
             activeMissionsTable.DataSource = activeMissionsBindingList;
         }
 
@@ -33,7 +33,7 @@ namespace RebelScum.Screens
         {
             missionNameDropdown.Items.Clear();
 
-            foreach (MissionTemplate template in GameState.AllMissionTemplates)
+            foreach (MissionTemplate template in RebelEngine.GameState.AllMissionTemplates)
             {
                 if ((template.Scope == this.missionScopeDropdown.Text)&&(template.Type == this.missionTypeDropdown.Text))
                 {
@@ -47,7 +47,7 @@ namespace RebelScum.Screens
             targetSystemDropdown.Items.Clear();
             if (missionScopeDropdown.Text != "Galaxy")
             {
-                foreach (StarSystem starSystem in GameState.Galaxy.StarSystems)
+                foreach (StarSystem starSystem in RebelEngine.GameState.Galaxy.StarSystems)
                 {
                     targetSystemDropdown.Items.Add(starSystem.Name);
                 }
@@ -59,7 +59,7 @@ namespace RebelScum.Screens
             targetPlanetDropdown.Items.Clear();
             if (missionScopeDropdown.Text == "Planet")
             {
-                foreach (StarSystem starSystem in GameState.Galaxy.StarSystems)
+                foreach (StarSystem starSystem in RebelEngine.GameState.Galaxy.StarSystems)
                 {
                     if (starSystem.Name == targetSystemDropdown.Text)
                     {

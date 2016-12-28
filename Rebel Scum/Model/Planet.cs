@@ -12,9 +12,11 @@ namespace RebelScum.Model
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Status { get; set; }
+        public int Ownership { get; set; }
+        public int Support { get; set; }
         public int Size { get; set; }
         public int Temperature { get; set; }
+        public string Owner { get; set; } 
 
         public List<Resource> PlanetResources { get; set; }
         
@@ -56,8 +58,9 @@ namespace RebelScum.Model
 
             foreach (Resource resource in PlanetResources)
             {
-                if (this.Status == "Rebel") { resource.Owner = "Rebel"; }
-                else { resource.Owner = "Hegmon"; }
+                if (this.Ownership >= 50 ) { resource.Owner = "Rebel"; }
+                else if (this.Ownership < 50 && this.Ownership > -50) { resource.Owner = "Neutral"; }
+                else if (this.Ownership < -50) { resource.Owner = "Hegmon"; }
             }
         }
     }

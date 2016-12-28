@@ -4,15 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RebelScum.Model;
+using RebelScum.Engine;
 
 namespace RebelScum.Engine
 {
     public class GalaxyEngine
     {
 
-        private static Random random = new Random();
-        private static List<string> systemNames = GameState.StarSystemNames;
-        private static List<string> planetNames = GameState.PlanetNames;
+        private Random random = new Random();
 
         public  Galaxy CreateGalaxy()
        { 
@@ -31,42 +30,49 @@ namespace RebelScum.Engine
 
         public  StarSystem CreateSystem()
         {
+            int ownershipGenerationKey; 
             var newSystem = new StarSystem();
-            newSystem.Id = GameState.CreatedSystemCount + 1;
             int planetsInSystem = random.Next(1, 15);
-            var systemNameIndex = random.Next(systemNames.Count);
-            newSystem.Name = systemNames[systemNameIndex];
-            systemNames.Remove(systemNames[systemNameIndex]);
+            var systemNameIndex = random.Next(RebelEngine.GameState.StarSystemNames.Count);
+            newSystem.Name = RebelEngine.GameState.StarSystemNames[systemNameIndex];
+            newSystem.Id = RebelEngine.GameState.CreatedSystemCount + 1;
+            RebelEngine.GameState.StarSystemNames.Remove(RebelEngine.GameState.StarSystemNames[systemNameIndex]);
 
-            if (random.Next(1, 100) > 99) { newSystem.Status = "Rebel"; }
-            else { newSystem.Status = "Hegmon"; }
+            ownershipGenerationKey = random.Next(1, 100);
+
+            if (ownershipGenerationKey > 99) { newSystem.Ownership = 100; newSystem.Support = 100; }
+            else if (ownershipGenerationKey > 0 && ownershipGenerationKey < 20) { newSystem.Ownership = -100; newSystem.Support = 50; }
+            else if (ownershipGenerationKey > 20 && ownershipGenerationKey < 30) { newSystem.Ownership = -50; newSystem.Support = 0; }
+            else if (ownershipGenerationKey > 30 && ownershipGenerationKey < 40) { newSystem.Ownership = -25; newSystem.Support = 25; }
+            else { newSystem.Ownership = -100; newSystem.Support = -100; }
 
             for (int i = 1; i < planetsInSystem; i++)
             {
-                newSystem.Planets.Add(CreatePlanet(i, planetsInSystem, newSystem.Status, random.Next(1, 25), newSystem.Name));
+                newSystem.Planets.Add(CreatePlanet(i, planetsInSystem, newSystem.Ownership, newSystem.Support, random.Next(1, 25), newSystem.Name));
             }
 
-            GameState.SystemCount += 1;
-            GameState.CreatedSystemCount += 1;
+            RebelEngine.GameState.SystemCount += 1;
+            RebelEngine.GameState.CreatedSystemCount += 1;
             newSystem.UpdateTotalResources();
             return newSystem;
         }
 
-        public  Planet CreatePlanet(int planetNumber, int planetsInSystem, string systemStatus, int systemTempMultiplyer, string systemName)
+        public  Planet CreatePlanet(int planetNumber, int planetsInSystem, int systemOwnership, int systemSupport, int systemTempMultiplyer, string systemName)
         {
 
 
             var newPlanet = new Planet();
 
             newPlanet.planetNumber = planetNumber;
-            newPlanet.Id = GameState.CreatedPlanetCount + 1;
-            newPlanet.Status = systemStatus;
+            newPlanet.Id = RebelEngine.GameState.CreatedPlanetCount + 1;
+            newPlanet.Ownership = systemOwnership;
+            newPlanet.Support = systemSupport;
 
-            if (planetNames.Count > 15)
+            if (RebelEngine.GameState.PlanetNames.Count > 15)
             {
-                var planetNameIndex = random.Next(planetNames.Count);
-                newPlanet.Name = planetNames[planetNameIndex];
-                planetNames.Remove(planetNames[planetNameIndex]);
+                var planetNameIndex = random.Next(RebelEngine.GameState.PlanetNames.Count);
+                newPlanet.Name = RebelEngine.GameState.PlanetNames[planetNameIndex];
+                RebelEngine.GameState.PlanetNames.Remove(RebelEngine.GameState.PlanetNames[planetNameIndex]);
             }
             else
             {
@@ -102,8 +108,8 @@ namespace RebelScum.Engine
                 if (resource.Quantity < 0) { resource.Quantity = 0; }
             }
 
-            GameState.CreatedPlanetCount += 1;
-            GameState.PlanetCount += 1;
+            RebelEngine.GameState.CreatedPlanetCount += 1;
+            RebelEngine.GameState.PlanetCount += 1;
             return newPlanet;
         }
     }

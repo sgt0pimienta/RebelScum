@@ -59,7 +59,7 @@
             "Galaxy",
             "System",
             "Planet"});
-            this.missionScopeDropdown.Location = new System.Drawing.Point(588, 43);
+            this.missionScopeDropdown.Location = new System.Drawing.Point(416, 43);
             this.missionScopeDropdown.Name = "missionScopeDropdown";
             this.missionScopeDropdown.Size = new System.Drawing.Size(196, 21);
             this.missionScopeDropdown.TabIndex = 14;
@@ -69,7 +69,7 @@
             // 
             this.missionScopeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.missionScopeLabel.AutoSize = true;
-            this.missionScopeLabel.Location = new System.Drawing.Point(503, 46);
+            this.missionScopeLabel.Location = new System.Drawing.Point(331, 46);
             this.missionScopeLabel.Name = "missionScopeLabel";
             this.missionScopeLabel.Size = new System.Drawing.Size(79, 13);
             this.missionScopeLabel.TabIndex = 15;
@@ -87,7 +87,7 @@
             "Sabotage",
             "Economic",
             "Population"});
-            this.missionTypeDropdown.Location = new System.Drawing.Point(588, 70);
+            this.missionTypeDropdown.Location = new System.Drawing.Point(416, 70);
             this.missionTypeDropdown.Name = "missionTypeDropdown";
             this.missionTypeDropdown.Size = new System.Drawing.Size(195, 21);
             this.missionTypeDropdown.TabIndex = 16;
@@ -97,7 +97,7 @@
             // 
             this.missionTypeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.missionTypeLabel.AutoSize = true;
-            this.missionTypeLabel.Location = new System.Drawing.Point(510, 73);
+            this.missionTypeLabel.Location = new System.Drawing.Point(338, 73);
             this.missionTypeLabel.Name = "missionTypeLabel";
             this.missionTypeLabel.Size = new System.Drawing.Size(72, 13);
             this.missionTypeLabel.TabIndex = 17;
@@ -108,7 +108,7 @@
             this.missionNameDropdown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.missionNameDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.missionNameDropdown.FormattingEnabled = true;
-            this.missionNameDropdown.Location = new System.Drawing.Point(588, 97);
+            this.missionNameDropdown.Location = new System.Drawing.Point(416, 97);
             this.missionNameDropdown.Name = "missionNameDropdown";
             this.missionNameDropdown.Size = new System.Drawing.Size(195, 21);
             this.missionNameDropdown.TabIndex = 18;
@@ -118,7 +118,7 @@
             // 
             this.missionNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.missionNameLabel.AutoSize = true;
-            this.missionNameLabel.Location = new System.Drawing.Point(537, 100);
+            this.missionNameLabel.Location = new System.Drawing.Point(365, 100);
             this.missionNameLabel.Name = "missionNameLabel";
             this.missionNameLabel.Size = new System.Drawing.Size(45, 13);
             this.missionNameLabel.TabIndex = 19;
@@ -144,7 +144,7 @@
             this.activeMissionsTable.Location = new System.Drawing.Point(12, 294);
             this.activeMissionsTable.Name = "activeMissionsTable";
             this.activeMissionsTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.activeMissionsTable.Size = new System.Drawing.Size(772, 135);
+            this.activeMissionsTable.Size = new System.Drawing.Size(600, 136);
             this.activeMissionsTable.TabIndex = 20;
             // 
             // MissionTypeColumn
@@ -165,7 +165,7 @@
             // 
             // TargetSystemColumn
             // 
-            this.TargetSystemColumn.DataPropertyName = "summarizedTarget";
+            this.TargetSystemColumn.DataPropertyName = "Target";
             this.TargetSystemColumn.HeaderText = "Target";
             this.TargetSystemColumn.Name = "TargetSystemColumn";
             this.TargetSystemColumn.ReadOnly = true;
@@ -191,7 +191,7 @@
             // btnCreateMission
             // 
             this.btnCreateMission.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCreateMission.Location = new System.Drawing.Point(588, 178);
+            this.btnCreateMission.Location = new System.Drawing.Point(416, 178);
             this.btnCreateMission.Name = "btnCreateMission";
             this.btnCreateMission.Size = new System.Drawing.Size(119, 23);
             this.btnCreateMission.TabIndex = 22;
@@ -202,7 +202,7 @@
             // btnDeleteMission
             // 
             this.btnDeleteMission.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDeleteMission.Location = new System.Drawing.Point(588, 207);
+            this.btnDeleteMission.Location = new System.Drawing.Point(416, 207);
             this.btnDeleteMission.Name = "btnDeleteMission";
             this.btnDeleteMission.Size = new System.Drawing.Size(119, 23);
             this.btnDeleteMission.TabIndex = 23;
@@ -215,7 +215,7 @@
             this.targetSystemDropdown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.targetSystemDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.targetSystemDropdown.FormattingEnabled = true;
-            this.targetSystemDropdown.Location = new System.Drawing.Point(588, 124);
+            this.targetSystemDropdown.Location = new System.Drawing.Point(416, 124);
             this.targetSystemDropdown.Name = "targetSystemDropdown";
             this.targetSystemDropdown.Size = new System.Drawing.Size(195, 21);
             this.targetSystemDropdown.TabIndex = 24;
@@ -226,7 +226,7 @@
             this.targetPlanetDropdown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.targetPlanetDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.targetPlanetDropdown.FormattingEnabled = true;
-            this.targetPlanetDropdown.Location = new System.Drawing.Point(588, 151);
+            this.targetPlanetDropdown.Location = new System.Drawing.Point(416, 151);
             this.targetPlanetDropdown.Name = "targetPlanetDropdown";
             this.targetPlanetDropdown.Size = new System.Drawing.Size(195, 21);
             this.targetPlanetDropdown.TabIndex = 25;
@@ -235,7 +235,7 @@
             // 
             this.targetSystemLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.targetSystemLabel.AutoSize = true;
-            this.targetSystemLabel.Location = new System.Drawing.Point(504, 127);
+            this.targetSystemLabel.Location = new System.Drawing.Point(332, 127);
             this.targetSystemLabel.Name = "targetSystemLabel";
             this.targetSystemLabel.Size = new System.Drawing.Size(78, 13);
             this.targetSystemLabel.TabIndex = 26;
@@ -245,7 +245,7 @@
             // 
             this.targetPlanetLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.targetPlanetLabel.AutoSize = true;
-            this.targetPlanetLabel.Location = new System.Drawing.Point(508, 154);
+            this.targetPlanetLabel.Location = new System.Drawing.Point(336, 154);
             this.targetPlanetLabel.Name = "targetPlanetLabel";
             this.targetPlanetLabel.Size = new System.Drawing.Size(74, 13);
             this.targetPlanetLabel.TabIndex = 27;
@@ -255,7 +255,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(796, 440);
+            this.ClientSize = new System.Drawing.Size(624, 441);
             this.Controls.Add(this.targetPlanetLabel);
             this.Controls.Add(this.targetSystemLabel);
             this.Controls.Add(this.targetPlanetDropdown);

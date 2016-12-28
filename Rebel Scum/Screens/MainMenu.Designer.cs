@@ -34,6 +34,9 @@
             this.btnAdvanceWeek = new System.Windows.Forms.Button();
             this.btnAdvanceMonth = new System.Windows.Forms.Button();
             this.btnAdvanceSemester = new System.Windows.Forms.Button();
+            this.btnSaveGame = new System.Windows.Forms.Button();
+            this.btnLoadGame = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // MissionsButton
@@ -54,6 +57,7 @@
             this.btnAdvanceDay.TabIndex = 1;
             this.btnAdvanceDay.Text = "+1 Day";
             this.btnAdvanceDay.UseVisualStyleBackColor = true;
+            this.btnAdvanceDay.Click += new System.EventHandler(this.btnAdvanceDay_Click);
             // 
             // btnAdvanceWeek
             // 
@@ -63,6 +67,7 @@
             this.btnAdvanceWeek.TabIndex = 2;
             this.btnAdvanceWeek.Text = "+1 Week";
             this.btnAdvanceWeek.UseVisualStyleBackColor = true;
+            this.btnAdvanceWeek.Click += new System.EventHandler(this.btnAdvanceWeek_Click);
             // 
             // btnAdvanceMonth
             // 
@@ -72,6 +77,7 @@
             this.btnAdvanceMonth.TabIndex = 3;
             this.btnAdvanceMonth.Text = "+1 Month";
             this.btnAdvanceMonth.UseVisualStyleBackColor = true;
+            this.btnAdvanceMonth.Click += new System.EventHandler(this.btnAdvanceMonth_Click);
             // 
             // btnAdvanceSemester
             // 
@@ -81,12 +87,45 @@
             this.btnAdvanceSemester.TabIndex = 4;
             this.btnAdvanceSemester.Text = "+6 Months";
             this.btnAdvanceSemester.UseVisualStyleBackColor = true;
+            this.btnAdvanceSemester.Click += new System.EventHandler(this.btnAdvanceSemester_Click);
+            // 
+            // btnSaveGame
+            // 
+            this.btnSaveGame.Location = new System.Drawing.Point(908, 88);
+            this.btnSaveGame.Name = "btnSaveGame";
+            this.btnSaveGame.Size = new System.Drawing.Size(157, 28);
+            this.btnSaveGame.TabIndex = 5;
+            this.btnSaveGame.Text = "Save Game";
+            this.btnSaveGame.UseVisualStyleBackColor = true;
+            this.btnSaveGame.Click += new System.EventHandler(this.btnSaveGame_Click);
+            // 
+            // btnLoadGame
+            // 
+            this.btnLoadGame.Location = new System.Drawing.Point(908, 50);
+            this.btnLoadGame.Name = "btnLoadGame";
+            this.btnLoadGame.Size = new System.Drawing.Size(157, 23);
+            this.btnLoadGame.TabIndex = 6;
+            this.btnLoadGame.Text = "Load Game";
+            this.btnLoadGame.UseVisualStyleBackColor = true;
+            this.btnLoadGame.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnLoadGame_MouseClick);
+            // 
+            // button1
+            // 
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.Location = new System.Drawing.Point(100, 13);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(60, 60);
+            this.button1.TabIndex = 7;
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1069, 126);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnLoadGame);
+            this.Controls.Add(this.btnSaveGame);
             this.Controls.Add(this.btnAdvanceSemester);
             this.Controls.Add(this.btnAdvanceMonth);
             this.Controls.Add(this.btnAdvanceWeek);
@@ -108,6 +147,9 @@
         private System.Windows.Forms.Button btnAdvanceWeek;
         private System.Windows.Forms.Button btnAdvanceMonth;
         private System.Windows.Forms.Button btnAdvanceSemester;
+        private System.Windows.Forms.Button btnSaveGame;
+        private System.Windows.Forms.Button btnLoadGame;
+        private System.Windows.Forms.Button button1;
     }
 }
 

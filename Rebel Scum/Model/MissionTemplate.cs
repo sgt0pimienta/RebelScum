@@ -14,5 +14,6 @@ namespace RebelScum.Model
         public string Scope { get; set; }
         public string Alignment { get; set; }
         public string Type { get; set; }
+        public int BaseSuccessChance { get; set; }
     }
 }
